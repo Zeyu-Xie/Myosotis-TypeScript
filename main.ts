@@ -40,16 +40,94 @@ function print_greetings(): void {
 
 type Foo = string | number | boolean;
 
-function withNever(foo: Foo): void {
+function withNever(foo: Foo) {
   if (typeof foo === "string") {
     console.log(foo.toLowerCase());
   } else if (typeof foo === "number") {
     console.log(foo - 1);
   } else if (typeof foo === "boolean") {
     console.log(!foo);
-  } 
+  }
   // never 类型可用于检查是否所有类型都已经处理
   else {
     const check: never = foo;
   }
+}
+
+// 数组类型
+
+const arr1: number[] = [1, 2, 3, 4, 5];
+const arr2: Array<number> = [1, 2, 3, 4, 5];
+
+// 元组类型
+
+const tuple1: [number, string] = [1, "hello"];
+
+// 接口类型
+
+// 定义一个接口
+interface Person {
+  name: string;
+  age: number;
+}
+// 使用接口
+const person: Person = {
+  name: "Sharon",
+  age: 21,
+};
+// 只读和可选属性
+interface Person1 {
+  // 只读属性
+  readonly name: string;
+  // 可选属性
+  age?: number;
+  // 其它任意属性
+  [prop: string]: any;
+}
+
+// 类型别名
+
+type count = number | number[];
+function hello(value: count) {
+  if (Array.isArray(value)) {
+    console.log(value.join(", "));
+  } else {
+    console.log(value);
+  }
+}
+
+// 函数类型
+
+// 需要指定参数和返回值类型
+function add1(a: number, b: number): number {
+  return a + b;
+}
+// 也可用接口定义函数类型
+interface add2 {
+  (a: number, b: number): number;
+}
+// 可选类型和默认值
+function add3(a: number = 0, b: number, c?: number): number {
+  return a + b + (c ? c : 0);
+}
+// 用扩展运算符表示其他参数
+function add4(...args: number[]): number {
+  let sum = 0;
+  for (const arg of args) {
+    sum += arg;
+  }
+  return sum;
+}
+
+// 函数重载
+type Types = string | number;
+function add(a: string, b: string): string;
+function add(a: number, b: number): number;
+function add(a: string, b: number): string;
+function add(a: number, b: string): string;
+function add(a: Types, b: Types): Types {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+  return a + b;
 }

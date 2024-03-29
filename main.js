@@ -44,3 +44,44 @@ function withNever(foo) {
         const check = foo;
     }
 }
+// 数组类型
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = [1, 2, 3, 4, 5];
+// 元组类型
+const tuple1 = [1, "hello"];
+// 使用接口
+const person = {
+    name: "Sharon",
+    age: 21,
+};
+function hello(value) {
+    if (Array.isArray(value)) {
+        console.log(value.join(", "));
+    }
+    else {
+        console.log(value);
+    }
+}
+// 函数类型
+// 需要指定参数和返回值类型
+function add1(a, b) {
+    return a + b;
+}
+// 可选类型和默认值
+function add3(a = 0, b, c) {
+    return a + b + (c ? c : 0);
+}
+// 用扩展运算符表示其他参数
+function add4(...args) {
+    let sum = 0;
+    for (const arg of args) {
+        sum += arg;
+    }
+    return sum;
+}
+function add(a, b) {
+    if (typeof a === "string" || typeof b === "string") {
+        return a.toString() + b.toString();
+    }
+    return a + b;
+}
