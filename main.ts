@@ -131,3 +131,146 @@ function add(a: Types, b: Types): Types {
   }
   return a + b;
 }
+
+// 泛型
+
+// 单个泛型参数
+function identity1<T>(arg: T): T {
+  return arg;
+}
+// 多个泛型参数
+function identity2<T, U>(arg1: T, arg2: U): [T, U] {
+  return [arg1, arg2];
+}
+// 泛型约束
+// 限制泛型参数必须包含 length 属性
+interface Lengthwise {
+  length: number;
+}
+function loggingIdentity<T extends Lengthwise>(arg: T): T {
+  console.log(arg.length);
+  return arg;
+}
+
+// 泛型接口
+interface KeyPair<T, U> {
+  key: T;
+  value: U;
+}
+const student1: KeyPair<number, string> = { key: 1, value: "Sharon" };
+
+// 联合类型
+
+let acan: string | number;
+acan = "Hello World! ";
+acan = 21;
+
+// 交叉类型
+
+interface PetA {
+  name: string;
+  age: number;
+}
+interface PetB {
+  name: string;
+  gender: string;
+}
+const pet: PetA & PetB = {
+  name: "Sharon",
+  age: 21,
+  gender: "female",
+};
+
+// 类型推断
+
+let value3 = 10;
+// value3 的类型为 number
+value3 = 1.25;
+
+let value4 = "Hello World! ";
+// value4 的类型为 string
+value4 = "Hello TypeScript! ";
+
+let value5;
+// value5 的类型为 any
+value5 = 10;
+value5 = "Hello World! ";
+value5 = true;
+
+// 类型断言
+
+let slogan: any = "Hello World! ";
+// 断言 slogan 是 string 类型
+let strLength1: number = (<string>slogan).length;
+let strLength2: number = (slogan as string).length;
+
+// 非空断言
+
+let user: string | null | undefined;
+// 断言 user 不为空
+user = "Sharon";
+console.log(user!.toUpperCase());
+
+// 赋值断言
+
+let dog!: string;
+console.log(dog);
+
+// 类型守卫
+
+interface isInObj1 {
+  index: number;
+  x: string;
+}
+interface isInObj2 {
+  index: number;
+  y: string;
+}
+// 使用 in 运算符判断属性是否存在
+function isString(value: isInObj1 | isInObj2) {
+  if ("x" in value) {
+    console.log(value.x);
+  }
+  if ("y" in value) {
+    console.log(value.y);
+  }
+}
+// 使用 typeof 运算符判断类型
+function isTypeOf(value: string | number) {
+  if (typeof value === "string") {
+    console.log(value.toUpperCase());
+  }
+  if (typeof value === "number") {
+    console.log(value.toFixed(2));
+  }
+}
+// 使用 instanceof 运算符判断实例
+function isInstance(date: Date | String) {
+  if (date instanceof Date) {
+    date.getDate();
+  } else {
+    return new Date("1970-01-01");
+  }
+}
+
+// 枚举
+
+enum directions {
+  UP,
+  DOWN,
+  LEFT,
+  RIGHT,
+}
+enum colors {
+  RED = 6,
+  GREEN,
+  YELLOW,
+}
+enum subjects {
+  MATH = "Math",
+  ENGLISH = "English",
+  SCIENCE = "Science",
+}
+console.log(directions.UP, directions.DOWN, directions.LEFT, directions.RIGHT);
+console.log(colors.RED, colors.GREEN, colors.YELLOW);
+console.log(subjects.MATH, subjects.ENGLISH, subjects.SCIENCE);

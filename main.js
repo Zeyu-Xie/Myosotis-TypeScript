@@ -85,3 +85,101 @@ function add(a, b) {
     }
     return a + b;
 }
+// 泛型
+// 单个泛型参数
+function identity1(arg) {
+    return arg;
+}
+// 多个泛型参数
+function identity2(arg1, arg2) {
+    return [arg1, arg2];
+}
+function loggingIdentity(arg) {
+    console.log(arg.length);
+    return arg;
+}
+const student1 = { key: 1, value: "Sharon" };
+// 联合类型
+let acan;
+acan = "Hello World! ";
+acan = 21;
+const pet = {
+    name: "Sharon",
+    age: 21,
+    gender: "female",
+};
+// 类型推断
+let value3 = 10;
+// value3 的类型为 number
+value3 = 1.25;
+let value4 = "Hello World! ";
+// value4 的类型为 string
+value4 = "Hello TypeScript! ";
+let value5;
+// value5 的类型为 any
+value5 = 10;
+value5 = "Hello World! ";
+value5 = true;
+// 类型断言
+let slogan = "Hello World! ";
+// 断言 slogan 是 string 类型
+let strLength1 = slogan.length;
+let strLength2 = slogan.length;
+// 非空断言
+let user;
+// 断言 user 不为空
+user = "Sharon";
+console.log(user.toUpperCase());
+// 赋值断言
+let dog;
+console.log(dog);
+// 使用 in 运算符判断属性是否存在
+function isString(value) {
+    if ("x" in value) {
+        console.log(value.x);
+    }
+    if ("y" in value) {
+        console.log(value.y);
+    }
+}
+// 使用 typeof 运算符判断类型
+function isTypeOf(value) {
+    if (typeof value === "string") {
+        console.log(value.toUpperCase());
+    }
+    if (typeof value === "number") {
+        console.log(value.toFixed(2));
+    }
+}
+// 使用 instanceof 运算符判断实例
+function isInstance(date) {
+    if (date instanceof Date) {
+        date.getDate();
+    }
+    else {
+        return new Date("1970-01-01");
+    }
+}
+// 枚举
+var directions;
+(function (directions) {
+    directions[directions["UP"] = 0] = "UP";
+    directions[directions["DOWN"] = 1] = "DOWN";
+    directions[directions["LEFT"] = 2] = "LEFT";
+    directions[directions["RIGHT"] = 3] = "RIGHT";
+})(directions || (directions = {}));
+var colors;
+(function (colors) {
+    colors[colors["RED"] = 6] = "RED";
+    colors[colors["GREEN"] = 7] = "GREEN";
+    colors[colors["YELLOW"] = 8] = "YELLOW";
+})(colors || (colors = {}));
+var subjects;
+(function (subjects) {
+    subjects["MATH"] = "Math";
+    subjects["ENGLISH"] = "English";
+    subjects["SCIENCE"] = "Science";
+})(subjects || (subjects = {}));
+console.log(directions.UP, directions.DOWN, directions.LEFT, directions.RIGHT);
+console.log(colors.RED, colors.GREEN, colors.YELLOW);
+console.log(subjects.MATH, subjects.ENGLISH, subjects.SCIENCE);
